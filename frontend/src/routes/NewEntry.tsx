@@ -1,6 +1,6 @@
-import { useState, useContext, ChangeEvent, MouseEvent } from 'react';
-import { EntryContext } from '../utilities/globalContext';
-import { Entry, EntryContextType } from '../@types/context';
+import { ChangeEvent, MouseEvent, useContext, useState } from "react";
+import { Entry, EntryContextType } from "../@types/context";
+import { EntryContext } from "../utilities/globalContext";
 
 export default function NewEntry() {
   const emptyEntry: Entry = { title: "", description: "", created_at: new Date() };
@@ -10,7 +10,7 @@ export default function NewEntry() {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewEntry({
       ...newEntry,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -40,18 +40,20 @@ export default function NewEntry() {
         className="p-3 rounded-md bg-white dark:bg-gray-700 dark:text-white"
         type="date"
         name="created_at"
-        value={(new Date(newEntry.created_at)).toISOString().split('T')[0]}
+        value={new Date(newEntry.created_at).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
       <input
         className="p-3 rounded-md bg-white dark:bg-gray-700 dark:text-white"
         type="date"
         name="scheduled_at"
-        value={newEntry.scheduled_at ? new Date(newEntry.scheduled_at).toISOString().split('T')[0] : ''}
+        value={newEntry.scheduled_at ? new Date(newEntry.scheduled_at).toISOString().split("T")[0] : ""}
         onChange={handleInputChange}
       />
       <button
-        onClick={(e) => { handleSend(e); }}
+        onClick={(e) => {
+          handleSend(e);
+        }}
         className="bg-blue-400 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-900 font-semibold text-white p-3 rounded-md"
       >
         Create

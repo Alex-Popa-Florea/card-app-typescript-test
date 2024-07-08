@@ -1,7 +1,7 @@
-import { useState, useContext, ChangeEvent, MouseEvent, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { EntryContext } from '../utilities/globalContext';
-import { Entry, EntryContextType } from '../@types/context';
+import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Entry, EntryContextType } from "../@types/context";
+import { EntryContext } from "../utilities/globalContext";
 
 export default function EditEntry() {
   const { id } = useParams();
@@ -11,14 +11,14 @@ export default function EditEntry() {
   const [newEntry, setNewEntry] = useState<Entry>(emptyEntry);
 
   useEffect(() => {
-    const entry = entries.filter(entry => entry.id == id)[0];
+    const entry = entries.filter((entry) => entry.id == id)[0];
     setNewEntry(entry);
   }, []);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setNewEntry({
       ...newEntry,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -47,18 +47,20 @@ export default function EditEntry() {
         className="p-3 rounded-md bg-white dark:bg-gray-700 dark:text-white"
         type="date"
         name="created_at"
-        value={(new Date(newEntry.created_at)).toISOString().split('T')[0]}
+        value={new Date(newEntry.created_at).toISOString().split("T")[0]}
         onChange={handleInputChange}
       />
       <input
         className="p-3 rounded-md bg-white dark:bg-gray-700 dark:text-white"
         type="date"
         name="scheduled_at"
-        value={newEntry.scheduled_at ? new Date(newEntry.scheduled_at).toISOString().split('T')[0] : ''}
+        value={newEntry.scheduled_at ? new Date(newEntry.scheduled_at).toISOString().split("T")[0] : ""}
         onChange={handleInputChange}
       />
       <button
-        onClick={(e) => { handleSend(e); }}
+        onClick={(e) => {
+          handleSend(e);
+        }}
         className="bg-blue-400 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-900 font-semibold text-white p-3 rounded-md"
       >
         Update

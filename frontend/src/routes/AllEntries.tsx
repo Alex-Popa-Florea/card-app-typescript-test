@@ -54,9 +54,7 @@ export default function AllEntries() {
                 </button>
               </div>
               <div className="text-right text-sm md:text-lg dark:text-gray-300">
-                {entry.created_at && (
-                  <div>Created: {new Date(entry.created_at.toString()).toLocaleDateString()}</div>
-                )}
+                {entry.created_at && <div>Created: {new Date(entry.created_at.toString()).toLocaleDateString()}</div>}
                 {entry.scheduled_at && (
                   <div>Scheduled: {new Date(entry.scheduled_at.toString()).toLocaleDateString()}</div>
                 )}
