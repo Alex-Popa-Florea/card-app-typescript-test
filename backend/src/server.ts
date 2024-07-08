@@ -30,11 +30,14 @@ server.post<{ Body: Entry }>("/create/", async (req, reply) => {
   newEntryBody.created_at
     ? (newEntryBody.created_at = new Date(req.body.created_at))
     : (newEntryBody.created_at = new Date());
+  newEntryBody.scheduled_at
+    ? (newEntryBody.scheduled_at = new Date(req.body.scheduled_at!))
+    : (newEntryBody.scheduled_at = null);
   try {
-    const createdEntryData = await Prisma.entry.create({ data: req.body });
+    const createdEntryData = await Prisma.entry.create({ data: newEntryBody });
     reply.send(createdEntryData);
-  } catch {
-    reply.status(500).send({ msg: "Error creating entry" });
+  } catch (error) {
+    reply.status(500).send({ msg: "Error creating entry", error });
   }
 });
 
@@ -42,8 +45,8 @@ server.delete<{ Params: { id: string } }>("/delete/:id", async (req, reply) => {
   try {
     await Prisma.entry.delete({ where: { id: req.params.id } });
     reply.send({ msg: "Deleted successfully" });
-  } catch {
-    reply.status(500).send({ msg: "Error deleting entry" });
+  } catch (error) {
+    reply.status(500).send({ msg: "Error deleting entry", error });
   }
 });
 
@@ -54,16 +57,17 @@ server.put<{ Params: { id: string }; Body: Entry }>(
     updatedEntryBody.created_at
       ? (updatedEntryBody.created_at = new Date(req.body.created_at))
       : (updatedEntryBody.created_at = new Date());
+    updatedEntryBody.scheduled_at
+      ? (updatedEntryBody.scheduled_at = new Date(req.body.scheduled_at!))
+      : (updatedEntryBody.scheduled_at = null);
     try {
       await Prisma.entry.update({
-        data: req.body,
+        data: updatedEntryBody,
         where: { id: req.params.id },
       });
       reply.send({ msg: "Updated successfully" });
-    } catch {
-      reply.status(500).send({ msg: "Error updating" });
+    } catch (error) {
+      reply.status(500).send({ msg: "Error updating entry", error });
     }
   }
 );
-
-

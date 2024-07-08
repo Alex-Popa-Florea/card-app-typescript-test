@@ -50,6 +50,13 @@ export default function EditEntry() {
         value={(new Date(newEntry.created_at)).toISOString().split('T')[0]}
         onChange={handleInputChange}
       />
+      <input
+        className="p-3 rounded-md bg-white dark:bg-gray-700 dark:text-white"
+        type="date"
+        name="scheduled_at"
+        value={newEntry.scheduled_at ? new Date(newEntry.scheduled_at).toISOString().split('T')[0] : ''}
+        onChange={handleInputChange}
+      />
       <button
         onClick={(e) => { handleSend(e); }}
         className="bg-blue-400 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-900 font-semibold text-white p-3 rounded-md"

@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import NavBar from './components/NavBar';
-import AllEntries from './routes/AllEntries';
-import NewEntry from './routes/NewEntry';
-import EditEntry from './routes/EditEntry';
-import { EntryProvider } from './utilities/globalContext';
-import { ThemeProvider } from './contexts/ThemeContext';
-import SettingsDialog from './components/SettingsDialog';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import SettingsDialog from "./components/SettingsDialog";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import AllEntries from "./routes/AllEntries";
+import EditEntry from "./routes/EditEntry";
+import NewEntry from "./routes/NewEntry";
+import { EntryProvider } from "./utilities/globalContext";
 
 export default function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);

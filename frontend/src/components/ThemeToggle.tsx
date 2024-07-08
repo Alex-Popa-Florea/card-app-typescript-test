@@ -1,11 +1,11 @@
-import React from 'react';
-import { useTheme } from '../contexts/ThemeContext';
+import React from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    toggleTheme(event.target.value as 'light' | 'dark');
+    toggleTheme(event.target.value as "light" | "dark");
   };
 
   return (

@@ -1,5 +1,5 @@
-import React from 'react';
-import ThemeToggle from './ThemeToggle';
+import React from "react";
+import ThemeToggle from "./ThemeToggle";
 
 interface SettingsDialogProps {
   isOpen: boolean;
@@ -19,10 +19,7 @@ const SettingsDialog: React.FC<SettingsDialogProps> = ({ isOpen, onClose }) => {
           <label className="block text-gray-700 dark:text-gray-300 mb-2">Theme</label>
           <ThemeToggle />
         </div>
-        <button
-          onClick={onClose}
-          className="p-2 bg-blue-400 hover:bg-blue-500 rounded-md font-medium text-white"
-        >
+        <button onClick={onClose} className="p-2 bg-blue-400 hover:bg-blue-500 rounded-md font-medium text-white">
           Close
         </button>
       </div>
